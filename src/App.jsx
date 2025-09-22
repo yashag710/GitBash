@@ -1,22 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
-import Home from "./app/Home";
+import { Routes, Route } from "react-router-dom";
+import InitialPage from "./pages/InitialPage";
+import MainChatPage from "./pages/MainChatPage";
 import "./App.css";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
-
   return (
-    <main className="container">
-      <Home />
-    </main>
+    <div className="app-container">
+      <Routes>
+        <Route path="/" element={<InitialPage />} />
+        <Route path="/chat" element={<MainChatPage />} />
+      </Routes>
+    </div>
   );
 }
 
